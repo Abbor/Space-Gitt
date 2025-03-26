@@ -5,20 +5,20 @@ Menu::Menu(TDT4102::Point position, int width, int height, std::string title):
     newGameBtn(TDT4102::Point{dist, dist}, btnW, btnH, "New Game"),
     loadGameBtn(TDT4102::Point{dist, 2 * dist + btnH}, btnW, btnH, "Load Game"),
     quitBtn(TDT4102::Point{width - dist - btnW, dist}, btnW, btnH, "Quit"),
-    playerName(TDT4102::Point{dist, 3*dist + 2 * btnH}, txtW, btnH, "PlayerName"),
+    playerNameInput(TDT4102::Point{dist, 3*dist + 2 * btnH}, txtW, btnH, "PlayerName"),
     saveGameBtn(TDT4102::Point{width - dist - btnW, dist * 2 + btnH}, btnW, btnH, "Save game")
 {
     add(newGameBtn);
     add(loadGameBtn);
     add(quitBtn);
-    add(playerName);
+    add(playerNameInput);
     add(saveGameBtn);
 
     quitBtn.setCallback(std::bind(&Menu::quitBtnCB, this));
     loadGameBtn.setCallback(std::bind(&Menu::loadGameBtnCB, this));
     newGameBtn.setCallback(std::bind(&Menu::newGameBtnCB, this));
     saveGameBtn.setCallback(std::bind(&Menu::saveGameCB, this));
-    playerName.setCallback(std::bind(&Menu::quitBtnCB, this));
+    playerNameInput.setCallback(std::bind(&Menu::quitBtnCB, this));
 
 
 }
@@ -27,11 +27,11 @@ Menu::Menu(TDT4102::Point position, int width, int height, std::string title):
 Menu::~Menu() {
     newGameBtn.setVisible(false);
     loadGameBtn.setVisible(false);
-    playerName.setVisible(false);
+    playerNameInput.setVisible(false);
 
     loadGameBtn.setCallback(nullptr);
     newGameBtn.setCallback(nullptr);
-    playerName.setCallback(nullptr);
+    playerNameInput.setCallback(nullptr);
 }
 
 
@@ -40,6 +40,7 @@ void Menu::quitBtnCB() {
 }
 
 void Menu::newGameBtnCB() {
+    // Lagre det som står i player name
     // New game
 }
 
@@ -51,10 +52,9 @@ void Menu::loadGameBtnCB() {
     std::ifstream ifs("Saved_games");
     if (ifs.is_open()) {
         std::string levelStr;
-        std::string playerName;
         std::getline(ifs, levelStr);
         std::getline(ifs, playerName);
-        int level = std::stoi(levelStr);
+        level = std::stoi(levelStr);
         ifs >> playerName;
 
         // Legg til level og playername i en annen klasse
@@ -73,4 +73,11 @@ void Menu::saveGameCB() {
     // ofs << playerName << std::endl;
 
     std::cout << "Spillet er lagret i " << "Saved_games" << std::endl;
+}
+
+
+void Menu::attachPersonWidget(TDT4102::Widget& pw)
+{
+	add(pw);
+	personWidgets.emplace_back(std::ref(pw));
 }

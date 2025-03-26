@@ -16,7 +16,7 @@ class Menu : public TDT4102::AnimationWindow
     TDT4102::Button quitBtn;
     TDT4102::Button newGameBtn;
     TDT4102::Button loadGameBtn;
-    TDT4102::TextInput playerName;
+    TDT4102::TextInput playerNameInput;
     TDT4102::Button saveGameBtn;
 
     void newGameBtnCB();
@@ -28,4 +28,7 @@ class Menu : public TDT4102::AnimationWindow
     // konstruktør
     Menu(TDT4102::Point position, int width, int height, std::string title);
     ~Menu();
+
+    int level;
+    std::string playerName;
 };
