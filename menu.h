@@ -19,15 +19,19 @@ class Menu : public TDT4102::AnimationWindow
     TDT4102::TextInput playerNameInput;
     TDT4102::Button saveGameBtn;
 
-    void newGameBtnCB();
+    void newGameBtnCB();    // Destruerer menyen når 
     void loadGameBtnCB();
     void saveGameCB();
     void quitBtnCB();
+
 
     public:
     // konstruktør
     Menu(TDT4102::Point position, int width, int height, std::string title);
     ~Menu();
+
+    void hideMenu();
+    void showMenu();
 
     int level;
     std::string playerName;

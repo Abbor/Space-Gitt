@@ -18,31 +18,54 @@ Menu::Menu(TDT4102::Point position, int width, int height, std::string title):
     loadGameBtn.setCallback(std::bind(&Menu::loadGameBtnCB, this));
     newGameBtn.setCallback(std::bind(&Menu::newGameBtnCB, this));
     saveGameBtn.setCallback(std::bind(&Menu::saveGameCB, this));
-    playerNameInput.setCallback(std::bind(&Menu::quitBtnCB, this));
-
-
 }
 
 
 Menu::~Menu() {
+    delete &newGameBtn;
+    delete &loadGameBtn;
+    delete &playerNameInput;
+    delete &quitBtn;
+    delete &saveGameBtn;
+}
+
+
+void Menu::hideMenu() {
     newGameBtn.setVisible(false);
     loadGameBtn.setVisible(false);
-    playerNameInput.setVisible(false);
+    playerNameInput.setSize(0, 0);
 
-    loadGameBtn.setCallback(nullptr);
     newGameBtn.setCallback(nullptr);
-    playerNameInput.setCallback(nullptr);
+    loadGameBtn.setCallback(nullptr);
 }
+
+
+void Menu::showMenu() {
+    newGameBtn.setVisible(true);
+    loadGameBtn.setVisible(true);
+    playerNameInput.setSize(txtW, btnH);
+
+    loadGameBtn.setCallback(std::bind(&Menu::loadGameBtnCB, this));
+    newGameBtn.setCallback(std::bind(&Menu::newGameBtnCB, this));
+}
+
+
+// --------------------Callback-funksjoner--------------------------
+// -----------------------------------------------------------------
 
 
 void Menu::quitBtnCB() { 
+    Menu::~Menu();
     close();
 }
 
+
 void Menu::newGameBtnCB() {
-    // Lagre det som står i player name
+    playerName = playerNameInput.getText();
     // New game
+    Menu::hideMenu();
 }
+
 
 void Menu::loadGameBtnCB() {
     if (!std::filesystem::exists("Saved_games")) {
@@ -55,12 +78,10 @@ void Menu::loadGameBtnCB() {
         std::getline(ifs, levelStr);
         std::getline(ifs, playerName);
         level = std::stoi(levelStr);
-        ifs >> playerName;
-
         // Legg til level og playername i en annen klasse
     }
+    Menu::hideMenu();
 }
-
 
 
 void Menu::saveGameCB() {
@@ -69,15 +90,8 @@ void Menu::saveGameCB() {
         std::cerr  << "Kunne ikke åpne filen " << "Saved_games" << ". \n";
     }
     // Hent verdier
-    // ofs << level << std::endl;
-    // ofs << playerName << std::endl;
+    ofs << level << std::endl;
+    ofs << playerName << std::endl;
 
     std::cout << "Spillet er lagret i " << "Saved_games" << std::endl;
-}
-
-
-void Menu::attachPersonWidget(TDT4102::Widget& pw)
-{
-	add(pw);
-	personWidgets.emplace_back(std::ref(pw));
 }
