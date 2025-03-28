@@ -50,6 +50,36 @@ void Menu::showMenu() {
 }
 
 
+void Menu::createScoreboard() {
+    std::map<int, std::string> scoreboardMap;
+    if (!std::filesystem::exists("Saved_games")) {
+        std::cerr << "Filen Saved_games finnes ikke. \n";
+        return; 
+    }
+
+    std::ifstream ifs("Saved_games");
+    std::string playerNameLine;
+    std::string levelLine;
+
+    std::getline(ifs, levelLine);
+    std::getline(ifs, playerNameLine);
+    scoreboardMap.insert({std::stoi(levelLine), playerNameLine});
+
+    while(!levelLine.empty()) {
+        std::getline(ifs, levelLine);
+        std::getline(ifs, playerNameLine);
+        scoreboardMap.insert({std::stoi(levelLine), playerNameLine});
+    }
+    
+    highscore = scoreboardMap.rbegin() ->first;
+    
+    // for (int i = 0; i < 5; i++) {
+    //     TDT4102::TextBox scores({3*dist, dist}, 200, 200, highscore scoreboardMap.rbegin()->second)     // Lag scoreboard som textbox
+    // }
+
+}
+
+
 // --------------------Callback-funksjoner--------------------------
 // -----------------------------------------------------------------
 

@@ -3,6 +3,8 @@
 #include "AnimationWindow.h"
 #include "widgets/Button.h"
 #include "widgets/TextInput.h"
+#include "widgets/TextBox.h"
+
 
 class Menu : public TDT4102::AnimationWindow
 {
@@ -35,4 +37,9 @@ class Menu : public TDT4102::AnimationWindow
 
     int level;
     std::string playerName;
+    int highscore;
+
+
+    void createScoreboard();
+
 };
