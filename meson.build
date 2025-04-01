@@ -28,8 +28,18 @@ src = []
 exe = executable(
   'program',
   src,
+'alien.cpp',
+'alien_kule.cpp',
+'app.cpp',
+'frameClock.cpp',
+'kule.cpp',
 'main.cpp',
 'menu.cpp',
+'skjold.cpp',
+'skyter.cpp',
+'spiller.cpp',
+'spiller_kule.cpp',
+'spillobjekt.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
   cpp_args : compiler_flags
 )
