@@ -125,9 +125,6 @@ void App::check_out_of_bounds(){
 void App::run(){
     while (gameover == false){
         //Klokke.tick()
-        handle_events(); //skal sjekke når brukeren trykker på piltaster og sånt
-        update(); //Oppdaterer posisjonen til objektene for hver frame
-        draw();
 
 
     }

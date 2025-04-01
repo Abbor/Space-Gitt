@@ -8,6 +8,5 @@ class Skyter : public Spillobjekt{
     public:
     Skyter(int lengde, int bredde, int posx, int posy, int fartx);
     int get_shooter_posx();
-    int get_shooter_posx();
     int get_shooter_posy();
 };
