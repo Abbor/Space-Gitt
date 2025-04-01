@@ -1,7 +1,7 @@
 #pragma once
 
 class Spillobjekt{
-private:
+protected:
 int lengde;
 int bredde;
 int posx;
@@ -11,4 +11,7 @@ public:
     Spillobjekt(int lengde, int bredde, int posx, int posy);
     int getPosx() const;
     int getPosy() const;
+    int getLengde() const;
+    int getBredde() const;
+
 };

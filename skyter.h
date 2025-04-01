@@ -1,14 +1,12 @@
 #pragma once
 #include "spillobjekt.h"
 
-class Skyter : public Spillobjekt
-{
-    public:
+class Skyter : public Spillobjekt{
+    protected:
     int fartx;
-    //int liv; ??
     
-    private:
+    public:
     Skyter(int lengde, int bredde, int posx, int posy, int fartx);
-    int get_shooter_pos();
+    int get_shooter_posx();
     void skyt();
 };

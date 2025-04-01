@@ -10,3 +10,11 @@ int Spillobjekt::getPosx() const{
 int Spillobjekt::getPosy() const{
     return posy; 
 }
+
+int Spillobjekt::getLengde() const{
+    return lengde;
+}
+
+int Spillobjekt::getBredde() const{
+    return bredde;
+}

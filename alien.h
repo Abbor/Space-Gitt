@@ -3,5 +3,8 @@
 
 class Alien : public Skyter {
     private:
-    int fartY;
+    int farty;
+    public:
+    Alien(int lengde, int bredde, int posx, int posy, int fartx, int farty);
+    void update();
 };
