@@ -1,5 +1,5 @@
-#include "skyter.h"
 #pragma once
+#include "skyter.h"
 
 class Alien : public Skyter {
     private:

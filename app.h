@@ -1,10 +1,14 @@
 #pragma once
 #include "std_lib_facilities.h"
-#include "spiller.h"
-#include "alien.h"
-#include "Alien_kule.h"
-#include "Spiller_kule.h"
+#include "skyter.h"
 #include "skjold.h"
+#include "spiller.h"
+#include "kule.h"
+#include "alien.h"
+#include "app.h"
+#include "alien_kule.h"
+#include "spiller_kule.h"
+#include "spillobjekt.h"
 
 extern int WIDTH;
 extern int HEIGHT;
