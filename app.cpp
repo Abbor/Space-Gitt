@@ -1,5 +1,6 @@
 #include "app.h"
 
+
 int WIDTH = 700;
 int HEIGHT = 1000;
 
@@ -24,7 +25,7 @@ void App::opprett_skjold(){
         Skjold skjoldo = Skjold(bredde, lengde, x,y);
         skjold.push_back(skjoldo);
     }
-    }
+}
 
 
 void App::opprett_aliens(){

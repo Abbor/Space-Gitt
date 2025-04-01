@@ -52,7 +52,4 @@ class App{
 
     void run(); //delvis fulført
 
-
-
-
 };

@@ -1,14 +1,33 @@
 {
-    "configurations": [
+  "configurations": [
+    {
+      "name": "Build and Run Debug",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/builddir/program",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build Executable",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/C++/Space-Gitt",
+      "program": "c:/C++/Space-Gitt/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
         {
-            "name": "Build and Run Debug",
-            "type": "lldb",
-            "request": "launch",
-            "program": "${workspaceFolder}/builddir/program",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "Build Executable",
-            "internalConsoleOptions": "neverOpen",
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    }
+  ]
 }
