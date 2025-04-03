@@ -43,6 +43,7 @@ class App{
     void update(); // delvis fulført
 
     void check_out_of_bounds(); //delvis fulført
+    void check_collition();
 
     void draw();
 
