@@ -29,6 +29,7 @@ class Menu : public TDT4102::AnimationWindow
 
     public:
     // konstruktør
+    Menu() : Menu({10, 10}, 600, 400, "Default Menu") {}
     Menu(TDT4102::Point position, int width, int height, std::string title);
     ~Menu();
 

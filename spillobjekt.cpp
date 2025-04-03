@@ -1,7 +1,8 @@
 #include "spillobjekt.h"
 
 //Konstruktør
-Spillobjekt::Spillobjekt(int lengde, int bredde, int posx, int posy) : lengde(lengde), bredde(bredde), posx(posx), posy(posy) {}
+// Konstruktøren redefineres, så det funker for meg hvis denne er borte. den ligger allerede i .h-fila
+// Spillobjekt::Spillobjekt(int lengde, int bredde, int posx, int posy) : lengde(lengde), bredde(bredde), posx(posx), posy(posy) {}
 
 int Spillobjekt::getPosx() const{
     return posx; 
