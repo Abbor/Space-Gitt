@@ -10,12 +10,13 @@
 #include "spiller_kule.h"
 #include "spillobjekt.h"
 
+
 extern int WIDTH;
 extern int HEIGHT;
 
-
-
 class App{
+    int spiller_liv;
+
     vector<Spiller> spillere; //Oppretter en vector for hver type objekt som er med i spillet
     vector<Alien> aliens;
     vector<Skjold> skjold;
@@ -30,7 +31,7 @@ class App{
     bool gameover = false;
 
     public:
-    App(); //bredden og høyden til skjærmen
+    App(); 
     
     void opprett_skjold(); //fulført
     void opprett_aliens(); //fulført
@@ -43,7 +44,16 @@ class App{
     void update(); // delvis fulført
 
     void check_out_of_bounds(); //delvis fulført
-    void check_collition();
+
+    bool check_collition(Spillobjekt spillobjekt1, Spillobjekt spillobjekt2);
+    
+    void group_collide_spiller_alienkuler();
+    void group_collide_aliens_spillerkuler();
+    void group_collide_skjold_spillerkuler();
+    void group_collide_skjold_alienkuler();
+
+
+
 
     void draw();
 
@@ -52,5 +62,8 @@ class App{
     void game_over();
 
     void run(); //delvis fulført
+
+
+
 
 };

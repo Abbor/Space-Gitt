@@ -1,12 +1,12 @@
 #include "app.h"
 
-
 int WIDTH = 700;
 int HEIGHT = 1000;
 
 
 
 App::App(){
+    int spiller_liv = 3;
     int spiller_bredde = 30; int spiller_lengde = 30; int spiller_posx = WIDTH/2; int spiller_posy = HEIGHT - HEIGHT/8; int spiller_fartx = 5;
 
     Spiller spiller = Spiller(spiller_bredde, spiller_lengde, spiller_posx, spiller_posy, spiller_fartx);
@@ -121,13 +121,63 @@ void App::check_out_of_bounds(){
     }
 }
 
+bool App::check_collition(Spillobjekt spillobjekt1, Spillobjekt spillobjekt2){
+    return spillobjekt1.getPosx() < spillobjekt2.getPosx() + spillobjekt2.getBredde() &&
+           spillobjekt1.getPosx() + spillobjekt1.getBredde() > spillobjekt2.getPosx() &&
+           spillobjekt1.getPosy() < spillobjekt2.getPosy() + spillobjekt2.getLengde() &&
+           spillobjekt1.getPosy() + spillobjekt1.getLengde() > spillobjekt2.getPosy();
 
+}
+
+void App::group_collide_spiller_alienkuler(){
+    for (auto it_spiller = spillere.begin(); it_spiller != spillere.end();){
+        for (auto it_kule = alienkuler.begin(); it_kule != alienkuler.end();){
+            if(check_collition(*it_kule, *it_spiller)){
+                alienkuler.erase(it_kule);
+                spiller_liv--;
+            }
+        }
+    }
+}
+
+void App::group_collide_aliens_spillerkuler(){
+    for (auto it_alien = aliens.begin(); it_alien!= aliens.end();){
+        for (auto it_kule = spillerkuler.begin(); it_kule != spillerkuler.end();){
+            if(check_collition(*it_kule, *it_alien)){
+                spillerkuler.erase(it_kule);
+                aliens.erase(it_alien);
+            }
+        }
+    }
+}
+
+void App::group_collide_skjold_alienkuler(){
+    for (auto it_skjold = skjold.begin(); it_skjold != skjold.end();){
+        for (auto it_kule = alienkuler.begin(); it_kule != alienkuler.end();){
+            if(check_collition(*it_kule, *it_skjold)){
+                alienkuler.erase(it_kule);
+                skjold.erase(it_skjold);
+            }
+        }
+    }
+}
+
+void App::group_collide_skjold_spillerkuler(){
+    for (auto it_skjold = skjold.begin(); it_skjold!= skjold.end();){
+        for (auto it_kule = spillerkuler.begin(); it_kule != spillerkuler.end();){
+            if(check_collition(*it_kule, *it_skjold)){
+                spillerkuler.erase(it_kule);
+                skjold.erase(it_skjold);
+            }
+        }
+    }
+}
 
 void App::run(){
     while (gameover == false){
         //Klokke.tick()
 
 
-    }
-    
+
+    } 
 }
